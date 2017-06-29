@@ -1,0 +1,104 @@
+
+<div class="container product-detail-container">
+  <div class="row">
+    <div class="product-detail-block">
+
+      <div class="back-button">
+        <button md-button class="md-icon-button" aria-label="Back" (click)="goBack()">
+          <md-icon>keyboard_backspace</md-icon>
+          <span>Back</span>
+        </button>
+      </div>
+
+        <md-card class="product-detail-card">
+          <md-card-content>
+
+            <div class="col-md-4">
+              <h4>{{product.id}} {{product.title}}</h4>
+              <img [src]="'http://smktesting.herokuapp.com/static/' + product.img">
+              <h4>{{product.text}}</h4>
+            </div>
+
+            <div class="col-md-8">
+
+              <div class="reviews-preloader" *ngIf="!reviewsLoaded">
+                <md-progress-circle
+                  class="example-margin"
+                  [attr.color]="preloaderColor"
+                  [mode]="preloaderMode">
+                </md-progress-circle>
+              </div>
+
+              <div class="reviews-wrapper" *ngIf="reviewsLoaded">
+
+                <div class="add-review-block" *ngIf="!productRateBlocked">
+
+                  <div class="rating">
+                    <ngb-rating [(rate)]="userReview.rate"></ngb-rating>
+                  </div>
+
+                  <div class="comment-input">
+                    <textarea [(ngModel)]="userReview.text" name="comment"
+                              placeholder="Type your review...">
+                    </textarea>
+                  </div>
+
+                  <button class="add-review-button" md-raised-button color="primary"
+                          (click)="addReview()"
+                          [disabled]="!userReview.text.length || addReviewProcess">Add review
+                  </button>
+
+                </div>
+
+                <div class="review-filter-block">
+
+                  <h3 class="header">Reviews</h3>
+
+                  <button md-icon-button [mdMenuTriggerFor]="menu">
+                    <md-icon>more_vert</md-icon>
+                  </button>
+                  <md-menu class="order-menu" #menu="mdMenu">
+                    <p class="menu-header">Order by:</p>
+                    <button md-menu-item (click)="orderReviews('created_at')">
+                      <md-icon>date_range</md-icon>
+                      <span>Date</span>
+                    </button>
+                    <button md-menu-item (click)="orderReviews('rate')">
+                      <md-icon>star_rate</md-icon>
+                      <span>Rating</span>
+                    </button>
+
+                    <button md-menu-item disabled>
+                      <md-icon>filter_list</md-icon>
+                      <span>ID</span>
+                    </button>
+                  </md-menu>
+                </div>
+
+                <div class="reviews-block">
+
+                  <md-card class="review-card" *ngFor="let review of reviews">
+
+                    <span class="user-info">
+                      {{review.created_at | date }} by {{review.created_by.username}}
+                    </span>
+
+                    <span class="rating-info">
+                      <ngb-rating [(rate)]="review.rate" [readonly]="true"></ngb-rating>
+                    </span>
+
+                    <div class="review-text">{{review.text}}</div>
+
+                  </md-card>
+
+                </div>
+              </div>
+            </div>
+
+          </md-card-content>
+        </md-card>
+
+    </div>
+  </div>
+</div>
+

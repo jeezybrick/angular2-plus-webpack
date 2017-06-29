@@ -1,0 +1,54 @@
+<div class="auth-block">
+  <md-card>
+    <md-tab-group>
+
+      <md-tab label="Log In">
+        <h1>Log In</h1>
+        <div class="cart-wrapper">
+          <div class="input-wrapper">
+            <md-input-container>
+              <input type="text" [(ngModel)]="loginUser.username" mdInput placeholder="Username">
+            </md-input-container>
+          </div>
+          <div>
+            <md-input-container>
+              <input type="password" [(ngModel)]="loginUser.password" mdInput placeholder="Password">
+            </md-input-container>
+          </div>
+          <button class="auth-button"
+                  md-raised-button
+                  color="primary"
+                  (click)="signIn()"
+                  [disabled]="!loginUser.username || !loginUser.password || loading">
+            Log In
+          </button>
+        </div>
+      </md-tab>
+
+      <md-tab label="Sign Up">
+        <h1>Sign Up</h1>
+        <div class="cart-wrapper">
+          <div class="input-wrapper">
+            <md-input-container>
+              <input type="text" [(ngModel)]="registerUser.username" mdInput placeholder="Username">
+            </md-input-container>
+          </div>
+          <div>
+            <md-input-container>
+              <input type="password" [(ngModel)]="registerUser.password" mdInput placeholder="Password">
+            </md-input-container>
+          </div>
+          <button class="auth-button"
+                  md-raised-button
+                  color="primary"
+                  (click)="signUp()"
+                  [disabled]="!registerUser.username || !registerUser.password || loading">
+            Sign Up
+          </button>
+
+        </div>
+      </md-tab>
+
+    </md-tab-group>
+  </md-card>
+</div>

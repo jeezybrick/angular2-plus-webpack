@@ -1,0 +1,27 @@
+
+.auth-block {
+
+  width: 400px;
+  margin: 0 auto;
+  top: 100px;
+  position: relative;
+
+  .mat-card {
+    width: 100%;
+
+    .mat-tab-label {
+      width: 49%;
+    }
+
+    .cart-wrapper {
+      text-align: center;
+
+      .mat-input-container {
+        width: 100%;
+      }
+      .auth-button{
+        margin-bottom: 20px;
+      }
+    }
+  }
+}

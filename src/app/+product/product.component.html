@@ -1,0 +1,49 @@
+
+<div class="container product-block-wrapper">
+  <div class="row">
+    <div class="col-md-12 product-block">
+
+      <h1>Products</h1>
+
+      <div class="row">
+        <div class="col-md-4 col-sm-6 product-info" *ngFor="let product of products">
+
+          <md-card class="product-cart">
+            <md-card-header>
+              <div md-card-avatar class="example-header-image"></div>
+              <md-card-title>{{product.title}}</md-card-title>
+              <md-card-subtitle>{{product.id}}</md-card-subtitle>
+            </md-card-header>
+
+            <div class="product-image-wrapper">
+              <img class="product-image"
+                   md-card-image
+                   [src]="'http://smktesting.herokuapp.com/static/' + product.img">
+            </div>
+
+            <md-card-content>
+              <p>
+                {{product.text}}
+              </p>
+            </md-card-content>
+
+            <md-card-actions>
+              <button md-raised-button color="primary"
+                      [routerLink]="['./detail', product.id]">
+                <md-icon>details</md-icon>
+                Show detail
+              </button>
+              <button md-raised-button color="accent"
+                      (click)="addToCart(product)"
+                      *ngIf="isProductAlreadyInCart(product) && authUser">
+                <md-icon>add</md-icon>
+                Add to cart
+              </button>
+            </md-card-actions>
+
+          </md-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

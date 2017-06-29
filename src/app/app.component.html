@@ -1,0 +1,86 @@
+
+<md-sidenav-container class="example-container">
+
+  <header></header>
+  <md-sidenav #sidenav class="example-sidenav">
+    <md-list>
+      <md-list-item>
+          <span>
+            <a [routerLink]=" ['./home']"
+               routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="sidenav.close()">
+              Home
+            </a>
+          </span>
+      </md-list-item>
+
+      <md-list-item>
+          <span>
+            <a [routerLink]=" ['./product']"
+               routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="sidenav.close()">
+              Products
+            </a>
+          </span>
+      </md-list-item>
+    </md-list>
+  </md-sidenav>
+
+  <md-toolbar color="primary">
+
+    <div class="container">
+
+      <div class="row">
+
+        <button md-button class="md-icon-button hidden-lg hidden-md" aria-label="Menu" (click)="sidenav.open()">
+          <md-icon>menu</md-icon>
+        </button>
+
+        <div class="router-names visible-lg visible-md">
+          <span>
+              <a [routerLink]=" ['./home']"
+                 routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                Home
+              </a>
+          </span>
+
+          <span>
+              <a [routerLink]=" ['./product']"
+                 routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                Products
+              </a>
+          </span>
+
+        </div>
+
+        <div *ngIf="!authUser.username" style="float: right;color: #FFFFFF;">
+
+          <button md-button class="md-icon-button" aria-label="Join" [routerLink]="['./auth']">
+            Join
+            <md-icon>person</md-icon>
+          </button>
+
+        </div>
+
+        <div *ngIf="authUser.username" style="float: right;color: #FFFFFF;">
+
+          <button md-button class="md-icon-button" aria-label="Cart" [routerLink]="['./cart']">
+            Cart
+            <md-icon>shopping_cart</md-icon>
+          </button>
+
+          <button md-button class="md-icon-button" aria-label="Logout" (click)="logout()">
+            Logout
+            <md-icon>exit_to_app</md-icon>
+          </button>
+
+        </div>
+
+      </div>
+    </div>
+
+  </md-toolbar>
+
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+
+</md-sidenav-container>
